@@ -1,10 +1,156 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+$clr-dark:  #2f363e;
+$clr-hours: #ff2972;
+$clr-minutes: #fee800;
+$clr-secondes: #04fc43;
+
+$circlesMap: (
+    hours: (
+        size: 180px,
+        color: $clr-hours,
+        needleWidth: 6px,
+        zIndex: 10
+    ),
+    minutes: (
+        size: 240px,
+        color: $clr-minutes,
+        needleWidth: 4px,
+        zIndex: 9
+    ),
+    secondes: (
+        size: 300px,
+        color: $clr-secondes,
+        needleWidth: 2px,
+        zIndex: 0
+    )
+);
+
+// mixin -> style des cercles et aiguilles heures, minutes, secondes
+@mixin circles($map){
+    @each $circle, $shape in $circlesMap {
+        .#{$circle}{
+            width: map-get($map: $shape, $key: size);
+            height: map-get($map: $shape, $key: size);
+            z-index: map-get($map: $shape, $key: zIndex);
+
+            &::before{
+                background-color: map-get($map: $shape, $key: color);
+                box-shadow: 0 0 20px map-get($map: $shape, $key: color),
+                            0 0 30px map-get($map: $shape, $key: color),
+                            0 0 40px map-get($map: $shape, $key: color),
+                            0 0 50px map-get($map: $shape, $key: color),
+                            0 0 60px map-get($map: $shape, $key: color);
+            }
+
+            .needle{
+                background-color: map-get($map: $shape, $key: color);
+                opacity: 0.75;
+                transform-origin: bottom;
+                transform: scaleY(0.5);
+                width: map-get($map: $shape, $key: needleWidth);
+            }
+        }        
+    }
+}
+
+
+*, ::after, ::before{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body{
     height: 100vh;
-    background-color: #333;
+    background-color: $clr-dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    position: relative;
+    background-color: $clr-dark;
+    // min-height: 500px;
+    border-radius: 255px 255px 20px 20px;
+    box-shadow: 25px 25px 75px rgba(0, 0, 0, .75),
+                10px 50px 70px rgba(0, 0, 0, .25),
+                inset 5px 5px 10px rgba(0, 0, 0, .5),
+                inset 5px 5px 20px rgba(0, 0, 0, .2),
+                inset -5px -5px 15px rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock{
+    position: relative;
+    width: 450px;
+    height: 450px;
+    background-color: $clr-dark;
+    border-radius: 50%;
+    box-shadow: 10px 50px 70px rgba(0, 0, 0, .25),
+                inset 5px 5px 10px rgba(0, 0, 0, .5),
+                inset 5px 5px 20px rgba(0, 0, 0, .2),
+                inset -5px -5px 15px rgba(0, 0, 0, .75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    // centre de l'horloge analogique
+    &::before{
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: $clr-dark;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        z-index: 1000;
+    }
+
+    span{
+        position: absolute;
+        inset: 20px;
+        color: #fff;
+        text-align: center;
+        transform: rotate(calc(30deg * var(--i)));
+
+        b{
+            display: inline-block;
+            font-size: 2rem;
+            opacity: .25;
+            font-weight: 600;
+            transform: rotate(calc(-30deg * var(--i)));
+        }
+    }
+
+    .circle{
+        position: absolute;
+        border: 2px solid rgba(0, 0, 0, .25);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        z-index: 10;
+    
+        .needle /*alias i*/{
+            position: absolute;
+            height: 50%;
+        }
+
+        &::before{
+            content: '';
+            position: absolute;
+            top: -8.5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+    }
+
+    @include circles($circlesMap)    
 }
