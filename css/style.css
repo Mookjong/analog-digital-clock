@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+*, ::after, ::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background-color: #2f363e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+}
+
+.clock {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  background-color: #2f363e;
+  border-radius: 50%;
+  box-shadow: 10px 50px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.clock::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #2f363e;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  z-index: 1000;
+}
+.clock span {
+  position: absolute;
+  inset: 20px;
+  color: #fff;
+  text-align: center;
+  transform: rotate(calc(30deg * var(--i)));
+}
+.clock span b {
+  display: inline-block;
+  font-size: 2rem;
+  opacity: 0.25;
+  font-weight: 600;
+  transform: rotate(calc(-30deg * var(--i)));
+}
+.clock .circle {
+  position: absolute;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 10;
+}
+.clock .circle .needle {
+  position: absolute;
+  height: 50%;
+}
+.clock .circle::before {
+  content: "";
+  position: absolute;
+  top: -8.5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.clock .hours {
+  width: 180px;
+  height: 180px;
+  z-index: 10;
+}
+.clock .hours::before {
+  background-color: #ff2972;
+  box-shadow: 0 0 20px #ff2972, 0 0 30px #ff2972, 0 0 40px #ff2972, 0 0 50px #ff2972, 0 0 60px #ff2972;
+}
+.clock .hours .needle {
+  background-color: #ff2972;
+  opacity: 0.75;
+  transform-origin: bottom;
+  transform: scaleY(0.5);
+  width: 6px;
+}
+.clock .minutes {
+  width: 240px;
+  height: 240px;
+  z-index: 9;
+}
+.clock .minutes::before {
+  background-color: #fee800;
+  box-shadow: 0 0 20px #fee800, 0 0 30px #fee800, 0 0 40px #fee800, 0 0 50px #fee800, 0 0 60px #fee800;
+}
+.clock .minutes .needle {
+  background-color: #fee800;
+  opacity: 0.75;
+  transform-origin: bottom;
+  transform: scaleY(0.5);
+  width: 4px;
+}
+.clock .secondes {
+  width: 300px;
+  height: 300px;
+  z-index: 0;
+}
+.clock .secondes::before {
+  background-color: #04fc43;
+  box-shadow: 0 0 20px #04fc43, 0 0 30px #04fc43, 0 0 40px #04fc43, 0 0 50px #04fc43, 0 0 60px #04fc43;
+}
+.clock .secondes .needle {
+  background-color: #04fc43;
+  opacity: 0.75;
+  transform-origin: bottom;
+  transform: scaleY(0.5);
+  width: 2px;
+}
+
+/*# sourceMappingURL=style.css.map */
