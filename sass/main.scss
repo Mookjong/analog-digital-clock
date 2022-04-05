@@ -72,17 +72,17 @@ body{
 
 .container{
     position: relative;
-    background-color: $clr-dark;
-    // min-height: 500px;
-    border-radius: 255px 255px 20px 20px;
-    box-shadow: 25px 25px 75px rgba(0, 0, 0, .75),
-                10px 50px 70px rgba(0, 0, 0, .25),
-                inset 5px 5px 10px rgba(0, 0, 0, .5),
-                inset 5px 5px 20px rgba(0, 0, 0, .2),
-                inset -5px -5px 15px rgba(0, 0, 0, .75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // background-color: $clr-dark;
+    // // min-height: 500px;
+    // border-radius: 255px 255px 20px 20px;
+    // box-shadow: 25px 25px 75px rgba(0, 0, 0, .75),
+    //             10px 50px 70px rgba(0, 0, 0, .25),
+    //             inset 5px 5px 10px rgba(0, 0, 0, .5),
+    //             inset 5px 5px 20px rgba(0, 0, 0, .2),
+    //             inset -5px -5px 15px rgba(0, 0, 0, .75);
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 }
 
 .clock{
