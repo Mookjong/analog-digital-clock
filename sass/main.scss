@@ -26,7 +26,7 @@ $circlesMap: (
     )
 );
 
-// mixin -> style des cercles et aiguilles heures, minutes, secondes
+// mixin -> style des cercles et aiguilles incluses: heures, minutes, secondes
 @mixin circles($map){
     @each $circle, $shape in $circlesMap {
         .#{$circle}{
@@ -72,17 +72,18 @@ body{
 
 .container{
     position: relative;
-    // background-color: $clr-dark;
-    // // min-height: 500px;
-    // border-radius: 255px 255px 20px 20px;
-    // box-shadow: 25px 25px 75px rgba(0, 0, 0, .75),
-    //             10px 50px 70px rgba(0, 0, 0, .25),
-    //             inset 5px 5px 10px rgba(0, 0, 0, .5),
-    //             inset 5px 5px 20px rgba(0, 0, 0, .2),
-    //             inset -5px -5px 15px rgba(0, 0, 0, .75);
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
+    background-color: $clr-dark;
+    // min-height: 500px;
+    border-radius: 255px 255px 20px 20px;
+    box-shadow: 25px 25px 75px rgba(0, 0, 0, .75),
+                10px 50px 70px rgba(0, 0, 0, .25),
+                inset 5px 5px 10px rgba(0, 0, 0, .5),
+                inset 5px 5px 20px rgba(255, 255, 255, .2),
+                inset -5px -5px 15px rgba(0, 0, 0, .75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .clock{
@@ -93,7 +94,7 @@ body{
     border-radius: 50%;
     box-shadow: 10px 50px 70px rgba(0, 0, 0, .25),
                 inset 5px 5px 10px rgba(0, 0, 0, .5),
-                inset 5px 5px 20px rgba(0, 0, 0, .2),
+                inset 5px 5px 20px rgba(255, 255, 255, .2),
                 inset -5px -5px 15px rgba(0, 0, 0, .75);
     display: flex;
     align-items: center;
@@ -153,4 +154,89 @@ body{
     }
 
     @include circles($circlesMap)    
+}
+
+// digital clock
+#time{
+    margin-bottom: 40px;
+    display: flex;
+    padding: 10px 20px;
+    font-size: 2em;
+    font-weight: 600;
+    border: 2px solid rgba(0, 0, 0, .5);
+    border-radius: 40px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .5),
+                inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+                inset -5px -5px 15px rgba(0, 0, 0, .75);
+
+    div{
+        position: relative;
+        width: 60px;
+        text-align: center;
+        font-weight: 500;
+
+        &:nth-child(1)::after, &:nth-child(2)::after{
+            content: ':';
+            position: absolute;
+            right: -4px;
+        }
+
+        &:nth-child(2)::after{
+            animation: animate 1s step(1) infinite;
+        }
+
+        &.hours{
+            color: $clr-hours;
+        }
+
+        &.minutes{
+            color: $clr-minutes;
+        }
+
+        &.seconds{
+            color: $clr-secondes;
+        }
+
+        &:last-child{
+            font-size: .8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            opacity: 0.8;
+            cursor: pointer;
+            text-shadow: 0 0 5px #fff;
+
+            &:active{
+                text-shadow: 0 0 5px #fff,
+                             0 0 5px #fff,
+                             0 0 10px #fff,
+                             0 0 15px #fff;
+                user-select: none;
+            }
+        }
+    }
+}
+
+.signature{
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    color: #fff;
+
+    a{
+        text-decoration: none;
+        color:#ccc;
+        font-size: 1.2rem;
+    }
+}
+
+
+@keyframes animate {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0
+    }
 }

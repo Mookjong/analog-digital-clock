@@ -16,6 +16,13 @@ body {
 
 .container {
   position: relative;
+  background-color: #2f363e;
+  border-radius: 255px 255px 20px 20px;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.75), 10px 50px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .clock {
@@ -24,7 +31,7 @@ body {
   height: 450px;
   background-color: #2f363e;
   border-radius: 50%;
-  box-shadow: 10px 50px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 50px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,6 +129,75 @@ body {
   transform-origin: bottom;
   transform: scaleY(0.5);
   width: 2px;
+}
+
+#time {
+  margin-bottom: 40px;
+  display: flex;
+  padding: 10px 20px;
+  font-size: 2em;
+  font-weight: 600;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5), inset 5px 5px 20px rgba(255, 255, 255, 0.2), inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+}
+#time div {
+  position: relative;
+  width: 60px;
+  text-align: center;
+  font-weight: 500;
+}
+#time div:nth-child(1)::after, #time div:nth-child(2)::after {
+  content: ":";
+  position: absolute;
+  right: -4px;
+}
+#time div:nth-child(2)::after {
+  animation: animate 1s step(1) infinite;
+}
+#time div.hours {
+  color: #ff2972;
+}
+#time div.minutes {
+  color: #fee800;
+}
+#time div.seconds {
+  color: #04fc43;
+}
+#time div:last-child {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.8;
+  cursor: pointer;
+  text-shadow: 0 0 5px #fff;
+}
+#time div:last-child:active {
+  text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
+  user-select: none;
+}
+
+.signature {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+  color: #fff;
+}
+.signature a {
+  text-decoration: none;
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
